@@ -1,0 +1,866 @@
+{
+  "version": "1",
+  "projectGraph": {
+    "nodes": {
+      "avatar-app-e2e": {
+        "name": "avatar-app-e2e",
+        "type": "e2e",
+        "data": {
+          "root": "apps/avatar-app-e2e",
+          "sourceRoot": "apps/avatar-app-e2e/src",
+          "projectType": "application",
+          "architect": {
+            "e2e": {
+              "builder": "@nrwl/cypress:cypress",
+              "options": {
+                "cypressConfig": "apps/avatar-app-e2e/cypress.json",
+                "tsConfig": "apps/avatar-app-e2e/tsconfig.e2e.json",
+                "devServerTarget": "avatar-app:serve"
+              },
+              "configurations": {
+                "production": {
+                  "devServerTarget": "avatar-app:serve:production"
+                }
+              }
+            },
+            "lint": {
+              "builder": "@angular-devkit/build-angular:tslint",
+              "options": {
+                "tsConfig": [
+                  "apps/avatar-app-e2e/tsconfig.e2e.json"
+                ],
+                "exclude": [
+                  "**/node_modules/**",
+                  "!apps/avatar-app-e2e/**/*"
+                ]
+              }
+            }
+          },
+          "tags": [],
+          "files": [
+            {
+              "file": "apps/avatar-app-e2e/cypress.json",
+              "ext": ".json",
+              "mtime": 1594753296036.2754
+            },
+            {
+              "file": "apps/avatar-app-e2e/src/fixtures/example.json",
+              "ext": ".json",
+              "mtime": 1594753296037.163
+            },
+            {
+              "file": "apps/avatar-app-e2e/src/integration/app.spec.ts",
+              "ext": ".ts",
+              "mtime": 1594753296037.5852
+            },
+            {
+              "file": "apps/avatar-app-e2e/src/plugins/index.js",
+              "ext": ".js",
+              "mtime": 1594753296038.016
+            },
+            {
+              "file": "apps/avatar-app-e2e/src/support/app.po.ts",
+              "ext": ".ts",
+              "mtime": 1594753296038.414
+            },
+            {
+              "file": "apps/avatar-app-e2e/src/support/commands.ts",
+              "ext": ".ts",
+              "mtime": 1594753296038.6765
+            },
+            {
+              "file": "apps/avatar-app-e2e/src/support/index.ts",
+              "ext": ".ts",
+              "mtime": 1594753296038.9526
+            },
+            {
+              "file": "apps/avatar-app-e2e/tsconfig.e2e.json",
+              "ext": ".json",
+              "mtime": 1594753296036.4934
+            },
+            {
+              "file": "apps/avatar-app-e2e/tsconfig.json",
+              "ext": ".json",
+              "mtime": 1594753296036.7449
+            },
+            {
+              "file": "apps/avatar-app-e2e/tslint.json",
+              "ext": ".json",
+              "mtime": 1594753296036.0154
+            }
+          ]
+        }
+      },
+      "avatar-app": {
+        "name": "avatar-app",
+        "type": "app",
+        "data": {
+          "projectType": "application",
+          "schematics": {
+            "@nrwl/angular:component": {
+              "style": "scss"
+            }
+          },
+          "root": "apps/avatar-app",
+          "sourceRoot": "apps/avatar-app/src",
+          "prefix": "avatar",
+          "architect": {
+            "build": {
+              "builder": "@angular-devkit/build-angular:browser",
+              "options": {
+                "outputPath": "dist/apps/avatar-app",
+                "index": "apps/avatar-app/src/index.html",
+                "main": "apps/avatar-app/src/main.ts",
+                "polyfills": "apps/avatar-app/src/polyfills.ts",
+                "tsConfig": "apps/avatar-app/tsconfig.app.json",
+                "aot": true,
+                "assets": [
+                  "apps/avatar-app/src/favicon.ico",
+                  "apps/avatar-app/src/assets"
+                ],
+                "styles": [
+                  "apps/avatar-app/src/styles.scss"
+                ],
+                "scripts": []
+              },
+              "configurations": {
+                "production": {
+                  "fileReplacements": [
+                    {
+                      "replace": "apps/avatar-app/src/environments/environment.ts",
+                      "with": "apps/avatar-app/src/environments/environment.prod.ts"
+                    }
+                  ],
+                  "optimization": true,
+                  "outputHashing": "all",
+                  "sourceMap": false,
+                  "extractCss": true,
+                  "namedChunks": false,
+                  "extractLicenses": true,
+                  "vendorChunk": false,
+                  "buildOptimizer": true,
+                  "budgets": [
+                    {
+                      "type": "initial",
+                      "maximumWarning": "2mb",
+                      "maximumError": "5mb"
+                    },
+                    {
+                      "type": "anyComponentStyle",
+                      "maximumWarning": "6kb",
+                      "maximumError": "10kb"
+                    }
+                  ]
+                }
+              }
+            },
+            "serve": {
+              "builder": "@angular-devkit/build-angular:dev-server",
+              "options": {
+                "browserTarget": "avatar-app:build"
+              },
+              "configurations": {
+                "production": {
+                  "browserTarget": "avatar-app:build:production"
+                }
+              }
+            },
+            "extract-i18n": {
+              "builder": "@angular-devkit/build-angular:extract-i18n",
+              "options": {
+                "browserTarget": "avatar-app:build"
+              }
+            },
+            "lint": {
+              "builder": "@angular-devkit/build-angular:tslint",
+              "options": {
+                "tsConfig": [
+                  "apps/avatar-app/tsconfig.app.json",
+                  "apps/avatar-app/tsconfig.spec.json"
+                ],
+                "exclude": [
+                  "**/node_modules/**",
+                  "!apps/avatar-app/**/*"
+                ]
+              }
+            },
+            "test": {
+              "builder": "@nrwl/jest:jest",
+              "options": {
+                "jestConfig": "apps/avatar-app/jest.config.js",
+                "tsConfig": "apps/avatar-app/tsconfig.spec.json",
+                "passWithNoTests": true,
+                "setupFile": "apps/avatar-app/src/test-setup.ts"
+              }
+            }
+          },
+          "tags": [],
+          "files": [
+            {
+              "file": "apps/avatar-app/browserslist",
+              "ext": "",
+              "mtime": 1594753296030.5586
+            },
+            {
+              "file": "apps/avatar-app/jest.config.js",
+              "ext": ".js",
+              "mtime": 1594753296035.0803
+            },
+            {
+              "file": "apps/avatar-app/src/app/app.component.html",
+              "ext": ".html",
+              "mtime": 1594753296034.1147
+            },
+            {
+              "file": "apps/avatar-app/src/app/app.component.scss",
+              "ext": ".scss",
+              "mtime": 1594753296033.903
+            },
+            {
+              "file": "apps/avatar-app/src/app/app.component.spec.ts",
+              "ext": ".ts",
+              "mtime": 1594753296034.5022
+            },
+            {
+              "file": "apps/avatar-app/src/app/app.component.ts",
+              "ext": ".ts",
+              "mtime": 1594753296034.8179
+            },
+            {
+              "file": "apps/avatar-app/src/app/app.module.ts",
+              "ext": ".ts",
+              "mtime": 1595100996867.6738
+            },
+            {
+              "file": "apps/avatar-app/src/app/catalog/catalog.module.ts",
+              "ext": ".ts",
+              "mtime": 1595101007401.8628
+            },
+            {
+              "file": "apps/avatar-app/src/app/catalog/feature-catalog/feature-catalog.component.html",
+              "ext": ".html",
+              "mtime": 1595100960892.658
+            },
+            {
+              "file": "apps/avatar-app/src/app/catalog/feature-catalog/feature-catalog.component.scss",
+              "ext": ".scss",
+              "mtime": 1595100960892.397
+            },
+            {
+              "file": "apps/avatar-app/src/app/catalog/feature-catalog/feature-catalog.component.spec.ts",
+              "ext": ".ts",
+              "mtime": 1595100960893.011
+            },
+            {
+              "file": "apps/avatar-app/src/app/catalog/feature-catalog/feature-catalog.component.ts",
+              "ext": ".ts",
+              "mtime": 1595100960893.166
+            },
+            {
+              "file": "apps/avatar-app/src/assets/.gitkeep",
+              "ext": "",
+              "mtime": 1594753296032.484
+            },
+            {
+              "file": "apps/avatar-app/src/environments/environment.prod.ts",
+              "ext": ".ts",
+              "mtime": 1594753296032.8882
+            },
+            {
+              "file": "apps/avatar-app/src/environments/environment.ts",
+              "ext": ".ts",
+              "mtime": 1594753296033.154
+            },
+            {
+              "file": "apps/avatar-app/src/favicon.ico",
+              "ext": ".ico",
+              "mtime": 1594753296030.2595
+            },
+            {
+              "file": "apps/avatar-app/src/index.html",
+              "ext": ".html",
+              "mtime": 1594753296031.4573
+            },
+            {
+              "file": "apps/avatar-app/src/main.ts",
+              "ext": ".ts",
+              "mtime": 1594753296031.722
+            },
+            {
+              "file": "apps/avatar-app/src/polyfills.ts",
+              "ext": ".ts",
+              "mtime": 1594753296031.9893
+            },
+            {
+              "file": "apps/avatar-app/src/styles.scss",
+              "ext": ".scss",
+              "mtime": 1594753296032.2385
+            },
+            {
+              "file": "apps/avatar-app/src/test-setup.ts",
+              "ext": ".ts",
+              "mtime": 1594753296035.644
+            },
+            {
+              "file": "apps/avatar-app/tsconfig.app.json",
+              "ext": ".json",
+              "mtime": 1594753296030.859
+            },
+            {
+              "file": "apps/avatar-app/tsconfig.json",
+              "ext": ".json",
+              "mtime": 1594753296029.7917
+            },
+            {
+              "file": "apps/avatar-app/tsconfig.spec.json",
+              "ext": ".json",
+              "mtime": 1594753296035.3357
+            },
+            {
+              "file": "apps/avatar-app/tslint.json",
+              "ext": ".json",
+              "mtime": 1594753296031.154
+            }
+          ]
+        }
+      },
+      "npm:@nrwl/angular": {
+        "type": "npm",
+        "name": "npm:@nrwl/angular",
+        "data": {
+          "version": "9.5.1",
+          "packageName": "@nrwl/angular",
+          "files": []
+        }
+      },
+      "npm:@angular/animations": {
+        "type": "npm",
+        "name": "npm:@angular/animations",
+        "data": {
+          "version": "^9.1.0",
+          "packageName": "@angular/animations",
+          "files": []
+        }
+      },
+      "npm:@angular/common": {
+        "type": "npm",
+        "name": "npm:@angular/common",
+        "data": {
+          "version": "^9.1.0",
+          "packageName": "@angular/common",
+          "files": []
+        }
+      },
+      "npm:@angular/compiler": {
+        "type": "npm",
+        "name": "npm:@angular/compiler",
+        "data": {
+          "version": "^9.1.0",
+          "packageName": "@angular/compiler",
+          "files": []
+        }
+      },
+      "npm:@angular/core": {
+        "type": "npm",
+        "name": "npm:@angular/core",
+        "data": {
+          "version": "^9.1.0",
+          "packageName": "@angular/core",
+          "files": []
+        }
+      },
+      "npm:@angular/forms": {
+        "type": "npm",
+        "name": "npm:@angular/forms",
+        "data": {
+          "version": "^9.1.0",
+          "packageName": "@angular/forms",
+          "files": []
+        }
+      },
+      "npm:@angular/platform-browser": {
+        "type": "npm",
+        "name": "npm:@angular/platform-browser",
+        "data": {
+          "version": "^9.1.0",
+          "packageName": "@angular/platform-browser",
+          "files": []
+        }
+      },
+      "npm:@angular/platform-browser-dynamic": {
+        "type": "npm",
+        "name": "npm:@angular/platform-browser-dynamic",
+        "data": {
+          "version": "^9.1.0",
+          "packageName": "@angular/platform-browser-dynamic",
+          "files": []
+        }
+      },
+      "npm:@angular/router": {
+        "type": "npm",
+        "name": "npm:@angular/router",
+        "data": {
+          "version": "^9.1.0",
+          "packageName": "@angular/router",
+          "files": []
+        }
+      },
+      "npm:rxjs": {
+        "type": "npm",
+        "name": "npm:rxjs",
+        "data": {
+          "version": "~6.5.4",
+          "packageName": "rxjs",
+          "files": []
+        }
+      },
+      "npm:zone.js": {
+        "type": "npm",
+        "name": "npm:zone.js",
+        "data": {
+          "version": "^0.10.2",
+          "packageName": "zone.js",
+          "files": []
+        }
+      },
+      "npm:@angular/cli": {
+        "type": "npm",
+        "name": "npm:@angular/cli",
+        "data": {
+          "version": "9.1.0",
+          "packageName": "@angular/cli",
+          "files": []
+        }
+      },
+      "npm:@nrwl/workspace": {
+        "type": "npm",
+        "name": "npm:@nrwl/workspace",
+        "data": {
+          "version": "9.5.1",
+          "packageName": "@nrwl/workspace",
+          "files": []
+        }
+      },
+      "npm:@types/node": {
+        "type": "npm",
+        "name": "npm:@types/node",
+        "data": {
+          "version": "~8.9.4",
+          "packageName": "@types/node",
+          "files": []
+        }
+      },
+      "npm:dotenv": {
+        "type": "npm",
+        "name": "npm:dotenv",
+        "data": {
+          "version": "6.2.0",
+          "packageName": "dotenv",
+          "files": []
+        }
+      },
+      "npm:ts-node": {
+        "type": "npm",
+        "name": "npm:ts-node",
+        "data": {
+          "version": "~7.0.0",
+          "packageName": "ts-node",
+          "files": []
+        }
+      },
+      "npm:tslint": {
+        "type": "npm",
+        "name": "npm:tslint",
+        "data": {
+          "version": "~6.0.0",
+          "packageName": "tslint",
+          "files": []
+        }
+      },
+      "npm:eslint": {
+        "type": "npm",
+        "name": "npm:eslint",
+        "data": {
+          "version": "6.8.0",
+          "packageName": "eslint",
+          "files": []
+        }
+      },
+      "npm:typescript": {
+        "type": "npm",
+        "name": "npm:typescript",
+        "data": {
+          "version": "~3.8.3",
+          "packageName": "typescript",
+          "files": []
+        }
+      },
+      "npm:prettier": {
+        "type": "npm",
+        "name": "npm:prettier",
+        "data": {
+          "version": "2.0.4",
+          "packageName": "prettier",
+          "files": []
+        }
+      },
+      "npm:@angular/compiler-cli": {
+        "type": "npm",
+        "name": "npm:@angular/compiler-cli",
+        "data": {
+          "version": "^9.1.0",
+          "packageName": "@angular/compiler-cli",
+          "files": []
+        }
+      },
+      "npm:@angular/language-service": {
+        "type": "npm",
+        "name": "npm:@angular/language-service",
+        "data": {
+          "version": "^9.1.0",
+          "packageName": "@angular/language-service",
+          "files": []
+        }
+      },
+      "npm:@angular-devkit/build-angular": {
+        "type": "npm",
+        "name": "npm:@angular-devkit/build-angular",
+        "data": {
+          "version": "0.901.0",
+          "packageName": "@angular-devkit/build-angular",
+          "files": []
+        }
+      },
+      "npm:codelyzer": {
+        "type": "npm",
+        "name": "npm:codelyzer",
+        "data": {
+          "version": "~5.0.1",
+          "packageName": "codelyzer",
+          "files": []
+        }
+      },
+      "npm:jest-preset-angular": {
+        "type": "npm",
+        "name": "npm:jest-preset-angular",
+        "data": {
+          "version": "8.1.2",
+          "packageName": "jest-preset-angular",
+          "files": []
+        }
+      },
+      "npm:@nrwl/jest": {
+        "type": "npm",
+        "name": "npm:@nrwl/jest",
+        "data": {
+          "version": "9.5.1",
+          "packageName": "@nrwl/jest",
+          "files": []
+        }
+      },
+      "npm:jest": {
+        "type": "npm",
+        "name": "npm:jest",
+        "data": {
+          "version": "25.2.3",
+          "packageName": "jest",
+          "files": []
+        }
+      },
+      "npm:@types/jest": {
+        "type": "npm",
+        "name": "npm:@types/jest",
+        "data": {
+          "version": "25.1.4",
+          "packageName": "@types/jest",
+          "files": []
+        }
+      },
+      "npm:ts-jest": {
+        "type": "npm",
+        "name": "npm:ts-jest",
+        "data": {
+          "version": "25.2.1",
+          "packageName": "ts-jest",
+          "files": []
+        }
+      },
+      "npm:cypress": {
+        "type": "npm",
+        "name": "npm:cypress",
+        "data": {
+          "version": "^4.1.0",
+          "packageName": "cypress",
+          "files": []
+        }
+      },
+      "npm:@nrwl/cypress": {
+        "type": "npm",
+        "name": "npm:@nrwl/cypress",
+        "data": {
+          "version": "9.5.1",
+          "packageName": "@nrwl/cypress",
+          "files": []
+        }
+      }
+    },
+    "dependencies": {
+      "avatar-app-e2e": [
+        {
+          "type": "implicit",
+          "source": "avatar-app-e2e",
+          "target": "avatar-app"
+        },
+        {
+          "type": "static",
+          "source": "avatar-app-e2e",
+          "target": "npm:@nrwl/cypress"
+        }
+      ],
+      "avatar-app": [
+        {
+          "type": "static",
+          "source": "avatar-app",
+          "target": "npm:@angular/core"
+        },
+        {
+          "type": "static",
+          "source": "avatar-app",
+          "target": "npm:@angular/platform-browser"
+        },
+        {
+          "type": "static",
+          "source": "avatar-app",
+          "target": "npm:@angular/common"
+        },
+        {
+          "type": "static",
+          "source": "avatar-app",
+          "target": "npm:@angular/platform-browser-dynamic"
+        },
+        {
+          "type": "static",
+          "source": "avatar-app",
+          "target": "npm:zone.js"
+        },
+        {
+          "type": "static",
+          "source": "avatar-app",
+          "target": "npm:jest-preset-angular"
+        }
+      ],
+      "npm:@nrwl/angular": [],
+      "npm:@angular/animations": [],
+      "npm:@angular/common": [],
+      "npm:@angular/compiler": [],
+      "npm:@angular/core": [],
+      "npm:@angular/forms": [],
+      "npm:@angular/platform-browser": [],
+      "npm:@angular/platform-browser-dynamic": [],
+      "npm:@angular/router": [],
+      "npm:rxjs": [],
+      "npm:zone.js": [],
+      "npm:@angular/cli": [],
+      "npm:@nrwl/workspace": [],
+      "npm:@types/node": [],
+      "npm:dotenv": [],
+      "npm:ts-node": [],
+      "npm:tslint": [],
+      "npm:eslint": [],
+      "npm:typescript": [],
+      "npm:prettier": [],
+      "npm:@angular/compiler-cli": [],
+      "npm:@angular/language-service": [],
+      "npm:@angular-devkit/build-angular": [],
+      "npm:codelyzer": [],
+      "npm:jest-preset-angular": [],
+      "npm:@nrwl/jest": [],
+      "npm:jest": [],
+      "npm:@types/jest": [],
+      "npm:ts-jest": [],
+      "npm:cypress": [],
+      "npm:@nrwl/cypress": []
+    }
+  },
+  "fileMap": {
+    "avatar-app-e2e": [
+      {
+        "file": "apps/avatar-app-e2e/cypress.json",
+        "ext": ".json",
+        "mtime": 1594753296036.2754
+      },
+      {
+        "file": "apps/avatar-app-e2e/src/fixtures/example.json",
+        "ext": ".json",
+        "mtime": 1594753296037.163
+      },
+      {
+        "file": "apps/avatar-app-e2e/src/integration/app.spec.ts",
+        "ext": ".ts",
+        "mtime": 1594753296037.5852
+      },
+      {
+        "file": "apps/avatar-app-e2e/src/plugins/index.js",
+        "ext": ".js",
+        "mtime": 1594753296038.016
+      },
+      {
+        "file": "apps/avatar-app-e2e/src/support/app.po.ts",
+        "ext": ".ts",
+        "mtime": 1594753296038.414
+      },
+      {
+        "file": "apps/avatar-app-e2e/src/support/commands.ts",
+        "ext": ".ts",
+        "mtime": 1594753296038.6765
+      },
+      {
+        "file": "apps/avatar-app-e2e/src/support/index.ts",
+        "ext": ".ts",
+        "mtime": 1594753296038.9526
+      },
+      {
+        "file": "apps/avatar-app-e2e/tsconfig.e2e.json",
+        "ext": ".json",
+        "mtime": 1594753296036.4934
+      },
+      {
+        "file": "apps/avatar-app-e2e/tsconfig.json",
+        "ext": ".json",
+        "mtime": 1594753296036.7449
+      },
+      {
+        "file": "apps/avatar-app-e2e/tslint.json",
+        "ext": ".json",
+        "mtime": 1594753296036.0154
+      }
+    ],
+    "avatar-app": [
+      {
+        "file": "apps/avatar-app/browserslist",
+        "ext": "",
+        "mtime": 1594753296030.5586
+      },
+      {
+        "file": "apps/avatar-app/jest.config.js",
+        "ext": ".js",
+        "mtime": 1594753296035.0803
+      },
+      {
+        "file": "apps/avatar-app/src/app/app.component.html",
+        "ext": ".html",
+        "mtime": 1594753296034.1147
+      },
+      {
+        "file": "apps/avatar-app/src/app/app.component.scss",
+        "ext": ".scss",
+        "mtime": 1594753296033.903
+      },
+      {
+        "file": "apps/avatar-app/src/app/app.component.spec.ts",
+        "ext": ".ts",
+        "mtime": 1594753296034.5022
+      },
+      {
+        "file": "apps/avatar-app/src/app/app.component.ts",
+        "ext": ".ts",
+        "mtime": 1594753296034.8179
+      },
+      {
+        "file": "apps/avatar-app/src/app/app.module.ts",
+        "ext": ".ts",
+        "mtime": 1595100996867.6738
+      },
+      {
+        "file": "apps/avatar-app/src/app/catalog/catalog.module.ts",
+        "ext": ".ts",
+        "mtime": 1595101007401.8628
+      },
+      {
+        "file": "apps/avatar-app/src/app/catalog/feature-catalog/feature-catalog.component.html",
+        "ext": ".html",
+        "mtime": 1595100960892.658
+      },
+      {
+        "file": "apps/avatar-app/src/app/catalog/feature-catalog/feature-catalog.component.scss",
+        "ext": ".scss",
+        "mtime": 1595100960892.397
+      },
+      {
+        "file": "apps/avatar-app/src/app/catalog/feature-catalog/feature-catalog.component.spec.ts",
+        "ext": ".ts",
+        "mtime": 1595100960893.011
+      },
+      {
+        "file": "apps/avatar-app/src/app/catalog/feature-catalog/feature-catalog.component.ts",
+        "ext": ".ts",
+        "mtime": 1595100960893.166
+      },
+      {
+        "file": "apps/avatar-app/src/assets/.gitkeep",
+        "ext": "",
+        "mtime": 1594753296032.484
+      },
+      {
+        "file": "apps/avatar-app/src/environments/environment.prod.ts",
+        "ext": ".ts",
+        "mtime": 1594753296032.8882
+      },
+      {
+        "file": "apps/avatar-app/src/environments/environment.ts",
+        "ext": ".ts",
+        "mtime": 1594753296033.154
+      },
+      {
+        "file": "apps/avatar-app/src/favicon.ico",
+        "ext": ".ico",
+        "mtime": 1594753296030.2595
+      },
+      {
+        "file": "apps/avatar-app/src/index.html",
+        "ext": ".html",
+        "mtime": 1594753296031.4573
+      },
+      {
+        "file": "apps/avatar-app/src/main.ts",
+        "ext": ".ts",
+        "mtime": 1594753296031.722
+      },
+      {
+        "file": "apps/avatar-app/src/polyfills.ts",
+        "ext": ".ts",
+        "mtime": 1594753296031.9893
+      },
+      {
+        "file": "apps/avatar-app/src/styles.scss",
+        "ext": ".scss",
+        "mtime": 1594753296032.2385
+      },
+      {
+        "file": "apps/avatar-app/src/test-setup.ts",
+        "ext": ".ts",
+        "mtime": 1594753296035.644
+      },
+      {
+        "file": "apps/avatar-app/tsconfig.app.json",
+        "ext": ".json",
+        "mtime": 1594753296030.859
+      },
+      {
+        "file": "apps/avatar-app/tsconfig.json",
+        "ext": ".json",
+        "mtime": 1594753296029.7917
+      },
+      {
+        "file": "apps/avatar-app/tsconfig.spec.json",
+        "ext": ".json",
+        "mtime": 1594753296035.3357
+      },
+      {
+        "file": "apps/avatar-app/tslint.json",
+        "ext": ".json",
+        "mtime": 1594753296031.154
+      }
+    ]
+  }
+}

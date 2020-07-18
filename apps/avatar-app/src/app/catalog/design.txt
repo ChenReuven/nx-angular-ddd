@@ -1,0 +1,11 @@
+- Catalog Module
+---- Smart ----
+- Catalog Feature (Smart Component)
+
+---- Dumb ----
+Catalog Browse - Cards (Dumb Component)
+
+---- Domain (3 piece) ----
+Catalog Facade (service) -> will implement Catalog Facade interface for IOC mechanism
+Catalog Entity
+Catalog Data Access -> Can be do also with interface
